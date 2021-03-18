@@ -1,3 +1,4 @@
+using DotNetFilters.Controllers;
 using DotNetFilters.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,9 @@ namespace DotNetFilters
             {
                 options.Filters.Add(typeof(CustomExceptionFilter));
             });
+
+            services.AddScoped<IPizzaService, PizzaService>();
+            services.AddScoped<IPizzaRepository, PizzaRepository>();
 
             services.AddSwaggerGen(c =>
             {
