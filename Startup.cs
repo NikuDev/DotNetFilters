@@ -26,6 +26,8 @@ namespace DotNetFilters
                 options.Filters.Add(typeof(CustomExceptionFilter));
             });
 
+            // Setup other services
+
             services.AddScoped<IPizzaService, PizzaService>();
             services.AddScoped<IPizzaRepository, PizzaRepository>();
 

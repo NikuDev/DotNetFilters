@@ -35,8 +35,34 @@ namespace DotNetFilters.Controllers
             _pizzaService.PlacePizzaOrder(pizzaId, address);
             return Ok();
         }
+
+
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public interface IPizzaService
+    {
+        void PlacePizzaOrder(Guid pizzaId, Address address);
+    }
     public class PizzaService : IPizzaService
     {
         private readonly int[] _allowedPostalCodeRange = new int[] { 100, 200 };
@@ -70,11 +96,13 @@ namespace DotNetFilters.Controllers
         }
     }
 
+
+
+
     public interface IPizzaRepository
     {
         void AddOrder(Guid pizzaId, Address address);
     }
-
     public class PizzaRepository : IPizzaRepository
     {
         public void AddOrder(Guid pizzaId, Address address)
@@ -83,10 +111,14 @@ namespace DotNetFilters.Controllers
         }
     }
 
-    public interface IPizzaService
-    {
-        void PlacePizzaOrder(Guid pizzaId, Address address);
-    }
+
+
+
+
+
+
+
+
 
     [Serializable]
     public class PostalCodeNotAllowedException : Exception
@@ -102,6 +134,18 @@ namespace DotNetFilters.Controllers
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     [Serializable]
     public class CityNotAllowedException : Exception
     {
@@ -111,6 +155,22 @@ namespace DotNetFilters.Controllers
         }
 
         protected CityNotAllowedException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+    }
+
+
+
+    [Serializable]
+    public class OrderException : Exception
+    {
+        public OrderException(string message)
+            : base(message)
+        {
+        }
+
+        protected OrderException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
